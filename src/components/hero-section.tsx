@@ -35,6 +35,8 @@ export default function HeroSection() {
           <div className="flex items-center justify-center">
             <div className="relative h-[350px] w-full overflow-hidden bg-muted md:h-[450px] lg:h-[500px]">
               <Image
+                width={100}
+                height={300}
                 src="/study-group.jpg"
                 alt="Nigerian students learning online"
                 className="object-cover w-full h-full"

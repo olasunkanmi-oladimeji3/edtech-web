@@ -1,34 +1,43 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Upload, Paperclip, X } from "lucide-react"
+import { useState } from "react";
+import { Upload, Paperclip, X } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function AssignmentSubmission({ assignment }) {
-  const [files, setFiles] = useState([])
-  const [comment, setComment] = useState("")
+interface Assignment {
+  title: string;
+  dueDate: string | number | Date;
+}
 
-  const handleFileChange = (e) => {
-    const newFiles = Array.from(e.target.files)
-    setFiles([...files, ...newFiles])
-  }
+interface AssignmentSubmissionProps {
+  assignment: Assignment;
+}
 
-  const removeFile = (fileToRemove) => {
-    setFiles(files.filter((file) => file !== fileToRemove))
-  }
+export default function AssignmentSubmission({ assignment }: AssignmentSubmissionProps) {
+  const [files, setFiles] = useState<File[]>([]);
+  const [comment, setComment] = useState<string>("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Here you would typically upload the files and send the comment to your backend
-    console.log("Submitting assignment:", { files, comment })
-    // Reset form
-    setFiles([])
-    setComment("")
-  }
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files);
+      setFiles((prevFiles) => [...prevFiles, ...newFiles]);
+    }
+  };
+
+  const removeFile = (fileToRemove: File) => {
+    setFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Submitting assignment:", { files, comment });
+    setFiles([]);
+    setComment("");
+  };
 
   return (
     <Card>
@@ -107,6 +116,5 @@ export default function AssignmentSubmission({ assignment }) {
         </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
-

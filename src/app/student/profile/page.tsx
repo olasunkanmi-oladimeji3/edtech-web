@@ -25,12 +25,13 @@ export default function ProfilePage() {
   const [profileData, setProfileData] = useState(mockProfileData)
   const [isEditing, setIsEditing] = useState(false)
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setProfileData({ ...profileData, [name]: value })
-  }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setProfileData({ ...profileData, [name]: value });
+  };
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // Here you would typically send the updated profile data to your backend
     console.log("Updated profile:", profileData)

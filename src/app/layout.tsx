@@ -1,43 +1,36 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import type React from "react"
+import type { Metadata } from "next"
+import { Inter } from "next/font/google"
+import "./globals.css"
+import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "TLS - The Learning Space | Nigeria's Premier EdTech Platform",
-  description: "Empowering Nigerian learners with world-class digital courses and skills for the future.",
+  title: "TLS - The Learning Space",
+  description: "Nigeria's Premier EdTech Platform",
   icons: {
     icon: "/black-Icon.png",
   },
-};
-
-interface RootLayoutProps {
-  children: React.ReactNode;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="relative flex min-h-screen flex-col">
+      <body className={inter.className}>
+        <div className="flex min-h-screen flex-col">
           <Navbar />
-          <div className="flex-1">{children}</div>
+          <main className="flex-grow">{children}</main>
           <Footer />
         </div>
       </body>
     </html>
-  );
+  )
 }
+

@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link" 
 import { Filter } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -142,6 +142,8 @@ export default function CoursesPage() {
             <Card key={course.id} className="overflow-hidden border-0 shadow-md">
               <div className="aspect-video w-full overflow-hidden">
                 <Image
+                  height={100}
+                  width={200}
                   src={course.image || "/placeholder.svg"}
                   alt={course.title}
                   className="object-cover w-full h-full transition-all hover:scale-105"
@@ -179,4 +181,3 @@ export default function CoursesPage() {
     </div>
   )
 }
-

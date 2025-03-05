@@ -3,10 +3,22 @@ import { CheckCircle, Circle } from "lucide-react"
 import { Progress } from "@/components/ui/progress"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default function CourseProgress({ course }) {
+type Lesson = {
+  title: string
+  completed: boolean
+}
+
+type CourseProgressProps = {
+  course: {
+    title: string
+    lessons: Lesson[]
+  }
+}
+
+export default function CourseProgress({ course }: CourseProgressProps) {
   const completedLessons = course.lessons.filter((lesson) => lesson.completed).length
   const totalLessons = course.lessons.length
-  const progressPercentage = (completedLessons / totalLessons) * 100
+  const progressPercentage = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0
 
   return (
     <Card>
@@ -34,4 +46,3 @@ export default function CourseProgress({ course }) {
     </Card>
   )
 }
-

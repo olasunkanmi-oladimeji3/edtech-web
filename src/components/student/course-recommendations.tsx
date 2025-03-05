@@ -4,7 +4,19 @@ import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default function CourseRecommendations({ recommendations }) {
+type Course = {
+  id: string
+  title: string
+  description: string
+  price: number
+  duration: string
+}
+
+type CourseRecommendationsProps = {
+  recommendations: Course[]
+}
+
+export default function CourseRecommendations({ recommendations }: CourseRecommendationsProps) {
   return (
     <Card>
       <CardHeader>
@@ -18,7 +30,9 @@ export default function CourseRecommendations({ recommendations }) {
               <h3 className="font-semibold">{course.title}</h3>
               <p className="text-sm text-muted-foreground">{course.description}</p>
               <div className="flex items-center mt-2">
-                <span className="text-sm font-medium mr-2">₦{course.price.toLocaleString()}</span>
+                <span className="text-sm font-medium mr-2">
+                  ₦{course.price.toLocaleString()}
+                </span>
                 <span className="text-xs text-muted-foreground">{course.duration}</span>
               </div>
             </li>
@@ -26,7 +40,7 @@ export default function CourseRecommendations({ recommendations }) {
         </ul>
       </CardContent>
       <CardFooter>
-        <Link href="/courses">
+        <Link href="/courses" passHref>
           <Button variant="outline">
             View All Courses <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -35,4 +49,3 @@ export default function CourseRecommendations({ recommendations }) {
     </Card>
   )
 }
-

@@ -1,40 +1,62 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Trash2, Upload, File, X } from "lucide-react"
+import { useState } from "react";
+import { Trash2, Upload, File, X } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-export default function LessonEditor({ lesson, index, onUpdate, onDelete }) {
-  const [lessonData, setLessonData] = useState(lesson)
+// Define TypeScript interfaces for props and lesson structure
+interface LessonMaterial {
+  name: string;
+  type: string;
+  size: number;
+}
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setLessonData({ ...lessonData, [name]: value })
-    onUpdate(lessonData.id, { ...lessonData, [name]: value })
-  }
+interface Lesson {
+  id: string;
+  title: string;
+  content: string;
+  materials?: LessonMaterial[];
+}
 
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0]
+interface LessonEditorProps {
+  lesson: Lesson;
+  index: number;
+  onUpdate: (id: string, updatedLesson: Lesson) => void;
+  onDelete: (id: string) => void;
+}
+
+export default function LessonEditor({ lesson, index, onUpdate, onDelete }: LessonEditorProps) {
+  const [lessonData, setLessonData] = useState<Lesson>(lesson);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    const updatedLesson = { ...lessonData, [name]: value };
+    setLessonData(updatedLesson);
+    onUpdate(lessonData.id, updatedLesson);
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
-      // In a real application, you would upload the file to your server or a cloud storage service
-      // For this example, we'll just store the file name
-      const newMaterial = { name: file.name, type: file.type, size: file.size }
-      const updatedMaterials = [...(lessonData.materials || []), newMaterial]
-      setLessonData({ ...lessonData, materials: updatedMaterials })
-      onUpdate(lessonData.id, { ...lessonData, materials: updatedMaterials })
+      const newMaterial: LessonMaterial = { name: file.name, type: file.type, size: file.size };
+      const updatedMaterials = [...(lessonData.materials || []), newMaterial];
+      const updatedLesson = { ...lessonData, materials: updatedMaterials };
+      setLessonData(updatedLesson);
+      onUpdate(lessonData.id, updatedLesson);
     }
-  }
+  };
 
-  const removeMaterial = (materialToRemove) => {
-    const updatedMaterials = lessonData.materials.filter((material) => material.name !== materialToRemove.name)
-    setLessonData({ ...lessonData, materials: updatedMaterials })
-    onUpdate(lessonData.id, { ...lessonData, materials: updatedMaterials })
-  }
+  const removeMaterial = (materialToRemove: LessonMaterial) => {
+    const updatedMaterials = lessonData.materials?.filter((material) => material.name !== materialToRemove.name) || [];
+    const updatedLesson = { ...lessonData, materials: updatedMaterials };
+    setLessonData(updatedLesson);
+    onUpdate(lessonData.id, updatedLesson);
+  };
 
   return (
     <Accordion type="single" collapsible>
@@ -94,6 +116,5 @@ export default function LessonEditor({ lesson, index, onUpdate, onDelete }) {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  )
+  );
 }
-

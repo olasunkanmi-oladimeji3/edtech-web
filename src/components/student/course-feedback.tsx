@@ -7,15 +7,18 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default function CourseFeedback({ courseId, courseName }) {
-  const [rating, setRating] = useState(0)
-  const [feedback, setFeedback] = useState("")
+type CourseFeedbackProps = {
+  courseId: string
+  courseName: string
+}
 
-  const handleSubmit = (e) => {
+export default function CourseFeedback({ courseId, courseName }: CourseFeedbackProps) {
+  const [rating, setRating] = useState<number>(0)
+  const [feedback, setFeedback] = useState<string>("")
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the feedback to your backend
     console.log("Feedback submitted:", { courseId, rating, feedback })
-    // Reset form
     setRating(0)
     setFeedback("")
   }
@@ -29,6 +32,7 @@ export default function CourseFeedback({ courseId, courseName }) {
       <CardContent>
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
+            {/* Rating Section */}
             <div>
               <label className="block text-sm font-medium mb-2">Your Rating</label>
               <div className="flex space-x-1">
@@ -44,6 +48,8 @@ export default function CourseFeedback({ courseId, courseName }) {
                 ))}
               </div>
             </div>
+
+            {/* Feedback Section */}
             <div>
               <label htmlFor="feedback" className="block text-sm font-medium mb-2">
                 Your Feedback
@@ -57,14 +63,13 @@ export default function CourseFeedback({ courseId, courseName }) {
               />
             </div>
           </div>
+
+          {/* Submit Button inside the form to ensure proper submission */}
+          <CardFooter className="mt-4">
+            <Button type="submit">Submit Feedback</Button>
+          </CardFooter>
         </form>
       </CardContent>
-      <CardFooter>
-        <Button type="submit" onClick={handleSubmit}>
-          Submit Feedback
-        </Button>
-      </CardFooter>
     </Card>
   )
 }
-

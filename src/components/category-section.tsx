@@ -58,6 +58,8 @@ export default function FeaturedCategories() {
           <Card key={category.id} className="overflow-hidden border shadow-md rounded-lg">
             <div className="aspect-video w-full overflow-hidden">
               <Image
+              height={100}
+              width={200}
                 src={category.image || "/placeholder.svg"}
                 alt={category.title}
                 className="object-cover w-full h-full transition-all hover:scale-105"

@@ -1,9 +1,18 @@
 import { Award } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
-export default function Certificate({ certificate }) {
+type CertificateProps = {
+  certificate: {
+    studentName: string
+    courseName: string
+    grade: string
+    completionDate: string
+    id: string
+  }
+}
+
+const Certificate: React.FC<CertificateProps> = ({ certificate }) => {
   return (
     <Card className="w-full max-w-3xl mx-auto">
       <CardHeader className="text-center">
@@ -25,7 +34,11 @@ export default function Certificate({ certificate }) {
       <CardFooter className="flex justify-between items-center">
         <div>
           <p className="font-semibold">Certificate ID: {certificate.id}</p>
-          <p className="text-sm text-muted-foreground">Verify at tls.com/verify</p>
+          <p className="text-sm text-muted-foreground">
+            Verify at <a href={`https://tls.com/verify/${certificate.id}`} target="_blank" className="text-blue-600 underline">
+              tls.com/verify
+            </a>
+          </p>
         </div>
         <Button>Download PDF</Button>
       </CardFooter>
@@ -33,3 +46,4 @@ export default function Certificate({ certificate }) {
   )
 }
 
+export default Certificate
