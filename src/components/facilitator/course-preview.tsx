@@ -28,7 +28,7 @@ interface CoursePreviewProps {
   quizzes: Quiz[];
 }
 
-export default function CoursePreview({ course, lessons, quizzes }: CoursePreviewProps) {
+export default function CoursePreview({ lessons, quizzes }: CoursePreviewProps) {
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null)
 
   return (
