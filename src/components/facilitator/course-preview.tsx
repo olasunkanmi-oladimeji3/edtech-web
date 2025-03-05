@@ -1,4 +1,4 @@
-"use client"
+"use client" 
 
 import { useState } from "react"
 import { ChevronRight, PlayCircle, FileText } from "lucide-react"
@@ -80,7 +80,7 @@ export default function CoursePreview({ course, lessons, quizzes }: CoursePrevie
           <div>
             <h2 className="text-2xl font-bold mb-4">{selectedLesson.title}</h2>
             <div className="prose max-w-none">{selectedLesson.content}</div>
-            {selectedLesson.materials?.length > 0 && (
+            {selectedLesson.materials && selectedLesson.materials.length > 0 && (
               <div className="mt-8">
                 <h3 className="text-lg font-semibold mb-2">Lesson Materials</h3>
                 <ul className="space-y-2">
