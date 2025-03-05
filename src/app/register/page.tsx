@@ -36,12 +36,10 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="container flex h-screen w-screen flex-col items-center justify-center">
+    <div className="container flex h-screen w-screen flex-col items-center justify-center space-y-3">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
       
-       
-        <Card>
-        <div className="flex flex-col  text-center  ">
+      <div className="flex flex-col  text-center  ">
         <Image
           src='/black-Icon.png'
           width={60}
@@ -52,6 +50,8 @@ export default function RegisterPage() {
           <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
           <p className="text-sm text-muted-foreground">Enter your information to create an account</p>
         </div>
+        <Card>
+       
           <form onSubmit={handleSubmit}>
             <CardContent className="pt-6">
               <div className="space-y-4">
