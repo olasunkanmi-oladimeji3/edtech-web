@@ -14,21 +14,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "TLS - The Learning Space | Nigeria's Premier EdTech Platform",
   description: "Empowering Nigerian learners with world-class digital courses and skills for the future.",
   icons: {
     icon: "/black-Icon.png",
-    
   },
 };
 
-
-export default function RootLayout({
-  children,
-}: Readonly<{
+interface RootLayoutProps {
   children: React.ReactNode;
-}>) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body

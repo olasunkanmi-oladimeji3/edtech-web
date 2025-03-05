@@ -6,8 +6,30 @@ import { ChevronRight, PlayCircle, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
-export default function CoursePreview({ course, lessons, quizzes }) {
-  const [selectedLesson, setSelectedLesson] = useState(null)
+interface Material {
+  name: string;
+}
+
+interface Lesson {
+  id: string;
+  title: string;
+  content: string;
+  materials?: Material[];
+}
+
+interface Quiz {
+  id: string;
+  title: string;
+}
+
+interface CoursePreviewProps {
+  course: any;
+  lessons: Lesson[];
+  quizzes: Quiz[];
+}
+
+export default function CoursePreview({ course, lessons, quizzes }: CoursePreviewProps) {
+  const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null)
 
   return (
     <div className="flex flex-col md:flex-row gap-8">
@@ -27,13 +49,12 @@ export default function CoursePreview({ course, lessons, quizzes }) {
                   <PlayCircle className="mr-2 h-4 w-4" />
                   View Lesson
                 </Button>
-                {lesson.materials &&
-                  lesson.materials.map((material, mIndex) => (
-                    <Button key={mIndex} variant="ghost" className="w-full justify-start">
-                      <FileText className="mr-2 h-4 w-4" />
-                      {material.name}
-                    </Button>
-                  ))}
+                {lesson.materials?.map((material, mIndex) => (
+                  <Button key={mIndex} variant="ghost" className="w-full justify-start">
+                    <FileText className="mr-2 h-4 w-4" />
+                    {material.name}
+                  </Button>
+                ))}
               </AccordionContent>
             </AccordionItem>
           ))}
@@ -59,7 +80,7 @@ export default function CoursePreview({ course, lessons, quizzes }) {
           <div>
             <h2 className="text-2xl font-bold mb-4">{selectedLesson.title}</h2>
             <div className="prose max-w-none">{selectedLesson.content}</div>
-            {selectedLesson.materials && selectedLesson.materials.length > 0 && (
+            {selectedLesson.materials?.length > 0 && (
               <div className="mt-8">
                 <h3 className="text-lg font-semibold mb-2">Lesson Materials</h3>
                 <ul className="space-y-2">
@@ -84,4 +105,3 @@ export default function CoursePreview({ course, lessons, quizzes }) {
     </div>
   )
 }
-

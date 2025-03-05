@@ -15,7 +15,7 @@ export default function HeroSection() {
                 Empower Your Future with TLS
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                Nigeria's premier EdTech platform. Gain world-class skills, boost your career, and shape the future of
+                Nigeria&apos;s premier EdTech platform. Gain world-class skills, boost your career, and shape the future of
                 our nation.
               </p>
             </div>

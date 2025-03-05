@@ -124,7 +124,7 @@ export default function CoursePage({ params }: { params: { id: string } }) {
             <p className="mt-4 text-muted-foreground">{course.description}</p>
 
             <div className="mt-8">
-              <h2 className="text-xl font-bold">What You'll Learn</h2>
+              <h2 className="text-xl font-bold">What You&apos;ll Learn</h2>
               <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {course.whatYouWillLearn.map((item, index) => (
                   <li key={index} className="flex items-start">

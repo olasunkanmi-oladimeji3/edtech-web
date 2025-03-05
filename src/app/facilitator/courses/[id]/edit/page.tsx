@@ -3,20 +3,35 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { PlusCircle, Save, ArrowLeft, Eye } from "lucide-react"
+import { Save, ArrowLeft, Eye } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import LessonEditor from "@/components/facilitator/lesson-editor"
-import QuizEditor from "@/components/facilitator/quiz-editor"
+// import LessonEditor from "@/components/facilitator/lesson-editor"
+// import QuizEditor from "@/components/facilitator/quiz-editor"
 import CoursePreview from "@/components/facilitator/course-preview"
 
-export default function CourseEditorPage({ params }: { params: { id: string } }) {
+interface CourseEditorPageProps {
+  params: { id: string }
+}
+
+interface Lesson {
+  id: number
+  title: string
+  content: string
+}
+
+interface Quiz {
+  id: number
+  title: string
+  questions: any[]
+}
+
+export default function CourseEditorPage({ params }: CourseEditorPageProps) {
   const router = useRouter()
   const [activeTab, setActiveTab] = useState("details")
   const [courseData, setCourseData] = useState({
@@ -27,12 +42,11 @@ export default function CourseEditorPage({ params }: { params: { id: string } })
     duration: "8",
     price: "15000",
   })
-  const [lessons, setLessons] = useState([])
-  const [quizzes, setQuizzes] = useState([])
+  const [lessons, setLessons] = useState<Lesson[]>([])
+  const [quizzes, setQuizzes] = useState<Quiz[]>([])
   const [isPreviewMode, setIsPreviewMode] = useState(false)
 
   const handleSave = async () => {
-    // Here you would save the course data, lessons, and quizzes to your backend
     console.log("Saving course data...")
     router.push("/facilitator/dashboard")
   }
@@ -45,23 +59,23 @@ export default function CourseEditorPage({ params }: { params: { id: string } })
     setQuizzes([...quizzes, { id: Date.now(), title: "New Quiz", questions: [] }])
   }
 
-  const updateLesson = (id, updatedLesson) => {
+  const updateLesson = (id: number, updatedLesson: Lesson) => {
     setLessons(lessons.map((lesson) => (lesson.id === id ? updatedLesson : lesson)))
   }
 
-  const deleteLesson = (id) => {
+  const deleteLesson = (id: number) => {
     setLessons(lessons.filter((lesson) => lesson.id !== id))
   }
 
-  const updateQuiz = (id, updatedQuiz) => {
+  const updateQuiz = (id: number, updatedQuiz: Quiz) => {
     setQuizzes(quizzes.map((quiz) => (quiz.id === id ? updatedQuiz : quiz)))
   }
 
-  const deleteQuiz = (id) => {
+  const deleteQuiz = (id: number) => {
     setQuizzes(quizzes.filter((quiz) => quiz.id !== id))
   }
 
-  const handleCourseDataChange = (e) => {
+  const handleCourseDataChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setCourseData({ ...courseData, [name]: value })
   }
@@ -106,115 +120,9 @@ export default function CourseEditorPage({ params }: { params: { id: string } })
               </CardHeader>
               <CardContent>
                 <form className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="title">Course Title</Label>
-                    <Input id="title" name="title" value={courseData.title} onChange={handleCourseDataChange} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="description">Course Description</Label>
-                    <Textarea
-                      id="description"
-                      name="description"
-                      value={courseData.description}
-                      onChange={handleCourseDataChange}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="category">Category</Label>
-                    <Select
-                      value={courseData.category}
-                      onValueChange={(value) => setCourseData({ ...courseData, category: value })}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="business">Business</SelectItem>
-                        <SelectItem value="technology">Technology</SelectItem>
-                        <SelectItem value="design">Design</SelectItem>
-                        <SelectItem value="marketing">Marketing</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="level">Course Level</Label>
-                    <Select
-                      value={courseData.level}
-                      onValueChange={(value) => setCourseData({ ...courseData, level: value })}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select course level" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="beginner">Beginner</SelectItem>
-                        <SelectItem value="intermediate">Intermediate</SelectItem>
-                        <SelectItem value="advanced">Advanced</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="duration">Course Duration (in weeks)</Label>
-                    <Input
-                      id="duration"
-                      name="duration"
-                      type="number"
-                      value={courseData.duration}
-                      onChange={handleCourseDataChange}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="price">Course Price (in Naira)</Label>
-                    <Input
-                      id="price"
-                      name="price"
-                      type="number"
-                      value={courseData.price}
-                      onChange={handleCourseDataChange}
-                    />
-                  </div>
+                  <Input id="title" name="title" value={courseData.title} onChange={handleCourseDataChange} />
+                  <Textarea id="description" name="description" value={courseData.description} onChange={handleCourseDataChange} />
                 </form>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="lessons">
-            <Card>
-              <CardHeader>
-                <CardTitle>Lessons</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {lessons.map((lesson, index) => (
-                    <LessonEditor
-                      key={lesson.id}
-                      lesson={lesson}
-                      index={index}
-                      onUpdate={updateLesson}
-                      onDelete={deleteLesson}
-                    />
-                  ))}
-                  <Button onClick={addLesson}>
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    Add New Lesson
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="quizzes">
-            <Card>
-              <CardHeader>
-                <CardTitle>Quizzes</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {quizzes.map((quiz, index) => (
-                    <QuizEditor key={quiz.id} quiz={quiz} index={index} onUpdate={updateQuiz} onDelete={deleteQuiz} />
-                  ))}
-                  <Button onClick={addQuiz}>
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    Add New Quiz
-                  </Button>
-                </div>
               </CardContent>
             </Card>
           </TabsContent>
@@ -223,4 +131,3 @@ export default function CourseEditorPage({ params }: { params: { id: string } })
     </div>
   )
 }
-

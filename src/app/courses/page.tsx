@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import Image from "next/image"
 
 export default function CoursesPage() {
   const courses = [
@@ -77,7 +78,7 @@ export default function CoursesPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight md:text-4xl">Courses</h1>
           <p className="mt-2 text-muted-foreground">
-            Discover courses tailored for Nigeria's growing industries and future leaders.
+            Discover courses tailored for Nigeria&apos;s growing industries and future leaders.
           </p>
         </div>
 
@@ -140,7 +141,7 @@ export default function CoursesPage() {
           {courses.map((course) => (
             <Card key={course.id} className="overflow-hidden border-0 shadow-md">
               <div className="aspect-video w-full overflow-hidden">
-                <img
+                <Image
                   src={course.image || "/placeholder.svg"}
                   alt={course.title}
                   className="object-cover w-full h-full transition-all hover:scale-105"

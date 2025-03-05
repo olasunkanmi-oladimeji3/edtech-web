@@ -221,7 +221,7 @@ export default function DashboardPage() {
                 <Card className="col-span-1">
                   <CardHeader>
                     <CardTitle>Upcoming Events</CardTitle>
-                    <CardDescription>Don't miss these scheduled events</CardDescription>
+                    <CardDescription>Don&apos;t miss these scheduled events</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
@@ -338,7 +338,7 @@ export default function DashboardPage() {
                     <div className="grid gap-2">
                       <h4 className="font-medium">Bio</h4>
                       <p className="text-muted-foreground">
-                        I'm a software developer passionate about learning new technologies and improving my skills.
+                        I&apos;m a software developer passionate about learning new technologies and improving my skills.
                       </p>
                     </div>
 
