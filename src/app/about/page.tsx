@@ -71,7 +71,7 @@ export default function AboutPage() {
       <section className="text-center bg-muted py-12 rounded-lg ">
         <h2 className="text-3xl font-bold mb-4">Join Our Mission</h2>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-          Be part of the educational revolution in Africa. Whether you're a learner, educator, or partner, there's a
+          Be part of the educational revolution in Africa. Whether you&apos;re a learner, educator, or partner, there&apos;s a
           place for you at TLS.
         </p>
         <div className="flex justify-center gap-4">

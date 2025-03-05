@@ -63,7 +63,7 @@ export default function TestimonialsSection() {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground text-justify">"{testimonial.content}"</p>
+              <p className="text-muted-foreground text-justify">&apos;{testimonial.content}&apos;</p>
             </CardContent>
           </Card>
         ))}

@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 export default function DashboardPage() {
   const [activeTab, setActiveTab] = useState("overview")
@@ -191,7 +192,8 @@ export default function DashboardPage() {
                       {enrolledCourses.map((course) => (
                         <div key={course.id} className="flex items-center space-x-4">
                           <div className="w-16 h-12 overflow-hidden rounded">
-                            <img
+                            
+                            <Image
                               src={course.image || "/placeholder.svg"}
                               alt={course.title}
                               className="object-cover w-full h-full"
@@ -247,7 +249,7 @@ export default function DashboardPage() {
                 {enrolledCourses.map((course) => (
                   <Card key={course.id} className="overflow-hidden">
                     <div className="aspect-video w-full overflow-hidden">
-                      <img
+                      <Image
                         src={course.image || "/placeholder.svg"}
                         alt={course.title}
                         className="object-cover w-full h-full"
@@ -303,7 +305,7 @@ export default function DashboardPage() {
                 <CardContent className="pt-6">
                   <div className="flex flex-col items-center space-y-4">
                     <div className="relative">
-                      <img
+                      <Image
                         src="/placeholder.svg?height=100&width=100"
                         alt="Profile"
                         className="rounded-full h-24 w-24 object-cover"

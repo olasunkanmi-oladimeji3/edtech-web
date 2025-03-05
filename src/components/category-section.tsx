@@ -2,8 +2,9 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card,CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from "next/image"
+
 
 export default function FeaturedCategories() {
   const categories = [
@@ -49,14 +50,14 @@ export default function FeaturedCategories() {
     <section className="container py-8 md:py-12 px-4 md:px-8 bg-neutral-100">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Explore Categories</h2>
-        <p className="mt-2 text-muted-foreground">Choose from diverse categories designed to empower Nigeria's future leaders.</p>
+        <p className="mt-2 text-muted-foreground">Choose from diverse categories designed to empower Nigeria&apos;s future leaders.</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 w-4/5 mx-auto">
         {categories.map((category) => (
           <Card key={category.id} className="overflow-hidden border shadow-md rounded-lg">
             <div className="aspect-video w-full overflow-hidden">
-              <img
+              <Image
                 src={category.image || "/placeholder.svg"}
                 alt={category.title}
                 className="object-cover w-full h-full transition-all hover:scale-105"

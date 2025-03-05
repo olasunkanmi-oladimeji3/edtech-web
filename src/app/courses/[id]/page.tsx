@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import Image from "next/image"
 
 export default function CoursePage({ params }: { params: { id: string } }) {
   // In a real app, you would fetch this data from an API
@@ -89,7 +90,8 @@ export default function CoursePage({ params }: { params: { id: string } }) {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <div className="aspect-video w-full overflow-hidden rounded-lg">
-            <img src={course.image || "/placeholder.svg"} alt={course.title} className="object-cover w-full " />
+
+            <Image src={course.image || "/placeholder.svg"} alt={course.title} className="object-cover w-full "/>
           </div>
 
           <div className="mt-8 px-5">
@@ -208,11 +210,10 @@ export default function CoursePage({ params }: { params: { id: string } }) {
                 <Card>
                   <CardContent className="pt-6">
                     <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-                      <img
-                        src={course.instructorAvatar || "/placeholder.svg"}
+
+                      <Image src={course.instructorAvatar || "/placeholder.svg"}
                         alt={course.instructor}
-                        className="rounded-full h-20 w-20 object-cover"
-                      />
+                        className="rounded-full h-20 w-20 object-cover"/>
                       <div>
                         <h3 className="text-lg font-bold">{course.instructor}</h3>
                         <p className="text-sm text-muted-foreground">{course.instructorTitle}</p>

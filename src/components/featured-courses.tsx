@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 export default function FeaturedCourses() {
   const featuredCourses = [
@@ -45,7 +46,7 @@ export default function FeaturedCourses() {
         <div className="space-y-2">
           <h2 className="text-2xl font-bold tracking-tighter sm:text-5xl">Featured Courses</h2>
           <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            Discover our top courses designed to boost your skills and career in Nigeria's growing industries.
+            Discover our top courses designed to boost your skills and career in Nigeria&apos;s growing industries.
           </p>
         </div>
       </div>
@@ -53,7 +54,7 @@ export default function FeaturedCourses() {
         {featuredCourses.map((course) => (
           <Card key={course.id} className="overflow-hidden border-0 shadow-md ">
             <div className="aspect-video w-full overflow-hidden">
-              <img
+              <Image
                 src={course.image || "/placeholder.svg"}
                 alt={course.title}
                 className="object-cover w-full h-full transition-all hover:scale-105"
