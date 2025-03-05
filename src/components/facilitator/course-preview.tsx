@@ -23,7 +23,7 @@ interface Quiz {
 }
 
 interface CoursePreviewProps {
-  course: any;
+  // course: any;
   lessons: Lesson[];
   quizzes: Quiz[];
 }
