@@ -43,7 +43,7 @@ const footerLinks = [
 export default function Footer() {
   return (
     <footer className="bg-background border-t">
-      <div className="container py-8 md:py-12">
+      <div className="container py-8 md:py-12 px-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {footerLinks.map((section) => (
             <div key={section.title}>
