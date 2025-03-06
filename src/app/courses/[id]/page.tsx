@@ -119,7 +119,6 @@ export default function CoursePage({ params }: { params: { id: string } }) {
                 <span className="ml-1 text-sm text-muted-foreground">({course.reviews} reviews)</span>
               </div>
             </div>
-
             <p className="mt-4 text-muted-foreground">{course.description}</p>
 
             <div className="mt-8">
