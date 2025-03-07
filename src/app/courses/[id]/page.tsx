@@ -8,10 +8,12 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import Image from "next/image"
 
-export default function CoursePage({ params }: { params: { id: string } }) {
+
+
+export default function CoursePage() {
   // In a real app, you would fetch this data from an API
   const course = {
-    id: Number.parseInt(params.id),
+    // id: id,
     title: "Web Development Bootcamp",
     description:
       "Learn HTML, CSS, JavaScript, React, and Node.js in this comprehensive bootcamp designed to take you from beginner to job-ready developer.",
@@ -90,7 +92,7 @@ export default function CoursePage({ params }: { params: { id: string } }) {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <div className="aspect-video w-full overflow-hidden rounded-lg">
-            <Image src={course.image || "/placeholder.svg"} alt={course.title} className="object-cover w-full h-full" />
+            <Image width={100} height={150} src={course.image || "/placeholder.svg"} alt={course.title} className="object-cover w-full h-full" />
           </div>
 
           <div className="mt-6">
