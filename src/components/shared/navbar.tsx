@@ -120,10 +120,10 @@ export default function Navbar() {
             </DropdownMenu>
           ) : (
             <>
-              <Link href="/login">
+              <Link href="auth/login">
                 <Button variant="ghost">Log In</Button>
               </Link>
-              <Link href="/register">
+              <Link href="/auth/register">
                 <Button>Sign Up</Button>
               </Link>
             </>
@@ -204,14 +204,14 @@ export default function Navbar() {
               ) : (
                 <>
                   <Link
-                    href="/login"
+                    href="/auth/login"
                     className="block py-2 text-sm font-medium transition-colors hover:text-primary"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Log In
                   </Link>
                   <Link
-                    href="/register"
+                    href="/auth/register"
                     className="block py-2 text-sm font-medium transition-colors hover:text-primary"
                     onClick={() => setIsMenuOpen(false)}
                   >

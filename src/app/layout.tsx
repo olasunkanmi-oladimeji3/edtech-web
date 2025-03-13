@@ -3,8 +3,9 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
+import Navbar from "@/components/shared/navbar"
+import Footer from "@/components/shared/footer"
+import PageLayout from "@/components/page-layout"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -26,11 +27,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <PageLayout>
+            <main className="flex-grow">{children}</main>
+          </PageLayout>
           <Footer />
         </div>
       </body>
     </html>
   )
 }
-

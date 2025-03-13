@@ -14,12 +14,14 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
         <HeroSection />
-        < FeaturedCategories />
+        <FeaturedCategories />
 
         <section className="py-5 md:py-12 lg:py-11 bg-neutral-50 px-11">
           <div className="mx-auto flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">How It Works</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                How It Works
+              </h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Start your learning journey with TLS in three simple steps.
               </p>
@@ -32,7 +34,8 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Browse our extensive library of courses taught by Nigerian industry experts.
+                  Browse our extensive library of courses taught by Nigerian
+                  industry experts.
                 </p>
               </CardContent>
             </Card>
@@ -42,17 +45,21 @@ export default function Home() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Access course materials anytime, anywhere, and learn at your own speed.
+                  Access course materials anytime, anywhere, and learn at your
+                  own speed.
                 </p>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-md">
               <CardHeader className="pb-2">
-                <CardTitle className="text-xl">3. Earn Your Certificate</CardTitle>
+                <CardTitle className="text-xl">
+                  3. Earn Your Certificate
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  Complete your course and receive a recognized certificate to boost your career.
+                  Complete your course and receive a recognized certificate to
+                  boost your career.
                 </p>
               </CardContent>
             </Card>
@@ -68,9 +75,12 @@ export default function Home() {
         <section className="container py-12 md:py-24 lg:py-32 px-8">
           <div className="mx-auto flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Ready to Transform Your Future?</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Ready to Transform Your Future?
+              </h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Join thousands of Nigerian professionals already learning on TLS.
+                Join thousands of Nigerian professionals already learning on
+                TLS.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -79,7 +89,7 @@ export default function Home() {
                   Explore Courses <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/register">
+              <Link href="/auth/register">
                 <Button variant="outline" className="w-full sm:w-auto">
                   Sign Up Free
                 </Button>
@@ -89,6 +99,6 @@ export default function Home() {
         </section>
       </main>
     </div>
-  )
+  );
 }
 

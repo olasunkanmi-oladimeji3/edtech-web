@@ -34,7 +34,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="container flex h-screen w-screen flex-col items-center justify-center">
+    <div className="container flex min-h-screen w-full flex-col items-center justify-center px-4 sm:px-0 ">
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
         <Image
@@ -118,7 +118,7 @@ export default function LoginPage() {
         </Card>
         <div className="text-center text-sm">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="font-medium text-primary hover:underline">
+          <Link href="/auth/register" className="font-medium text-primary hover:underline">
             Sign up
           </Link>
         </div>
